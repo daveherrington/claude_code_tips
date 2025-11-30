@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CLAUDE_CODE_GETTING_STARTED</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+  body {
+    padding: 2cm; 
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Claude Code Getting Started Guide for Aspiring Web Developers</h1>
+
+<h2 id="toc_1">A Practical Guide for Building Prototype Websites</h2>
+
+<hr>
+
+<h2 id="toc_2">Table of Contents</h2>
+
+<ol>
+<li><a href="#1-choosing-your-development-machine">Choosing Your Development Machine</a></li>
+<li><a href="#2-installing-homebrew">Installing Homebrew</a></li>
+<li><a href="#3-setting-up-git-and-github">Setting Up Git and GitHub</a></li>
+<li><a href="#4-installing-a-better-terminal">Installing a Better Terminal</a></li>
+<li><a href="#5-installing-a-code-editor">Installing a Code Editor</a></li>
+<li><a href="#6-installing-claude-code-prerequisites">Installing Claude Code Prerequisites</a></li>
+<li><a href="#7-installing-claude-code">Installing Claude Code</a></li>
+<li><a href="#8-installing-docker">Installing Docker</a></li>
+<li><a href="#9-creating-your-first-project">Creating Your First Project</a></li>
+<li><a href="#10-using-claude-code-effectively">Using Claude Code Effectively</a></li>
+<li><a href="#11-planning-mode-and-one-shot-builds">Planning Mode and One-Shot Builds</a></li>
+<li><a href="#12-recommended-free-tools">Recommended Free Tools</a></li>
+<li><a href="#13-example-prompts-to-try">Example Prompts to Try</a></li>
+<li><a href="#14-working-with-your-tech-partner">Working with Your Tech Partner</a></li>
+</ol>
+
+<hr>
+
+<h2 id="toc_3">1. Choosing Your Development Machine</h2>
+
+<h3 id="toc_4">Recommendation: Use the MacBook Air</h3>
+
+<p><strong>Why Mac wins for web development:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>MacBook Air</th>
+<th>Windows Laptop</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Terminal/CLI</td>
+<td>Native Unix (bash/zsh)</td>
+<td>Needs WSL2 setup</td>
+</tr>
+<tr>
+<td>Node.js/npm</td>
+<td>Works seamlessly</td>
+<td>Extra configuration</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>Native support</td>
+<td>Requires Hyper-V/WSL2</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Pre-installed</td>
+<td>Needs installation</td>
+</tr>
+<tr>
+<td>Path issues</td>
+<td>Rare</td>
+<td>Common with spaces/backslashes</td>
+</tr>
+<tr>
+<td>Industry standard</td>
+<td>Most web devs use Mac</td>
+<td>Less common</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The 250GB SSD concern:</strong> This is manageable. A typical web project is under 500MB. You can store 50+ projects easily. Use GitHub as your backup/archive.</p>
+
+<p><strong>Tips to manage storage:</strong></p>
+
+<ul>
+<li>Delete <code>node_modules</code> folders from inactive projects (run <code>npm install</code> to restore)</li>
+<li>Use <code>npx</code> to run tools without installing globally</li>
+<li>Clean Docker images periodically: <code>docker system prune</code></li>
+</ul>
+
+<hr>
+
+<h2 id="toc_5">2. Installing Homebrew</h2>
+
+<p>Homebrew is the standard package manager for macOS. It lets you install developer tools with simple terminal commands instead of hunting for download links.</p>
+
+<h3 id="toc_6">Install Homebrew</h3>
+
+<p>Open Terminal and run:</p>
+
+<div><pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></pre></div>
+
+<p>The installer will:</p>
+
+<ol>
+<li>Ask for your password (this is your Mac login password</li>
+<li>Show you what it will install</li>
+<li>Press Enter to continue</li>
+</ol>
+
+<p><strong>About the password prompt:</strong> This is the only time in this entire guide you&#39;ll be asked for your password. Homebrew needs it once during installation to create its directory (<code>/opt/homebrew</code>). After that, all <code>brew install</code> commands run without elevated privileges.</p>
+
+<p><strong>Good practice:</strong> Avoid using <code>sudo</code> (administrator/root access) on a development machine whenever possible. It&#39;s a security risk—if you accidentally run malicious code with sudo, it can damage your entire system. Homebrew is specifically designed to work without sudo, which is one reason it&#39;s the preferred package manager for developers.</p>
+
+<p><strong>Important:</strong> After installation, the installer will show you two commands to run. They look like this (copy the exact commands shown in YOUR terminal):</p>
+
+<div><pre><code class="language-bash">echo &#39;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#39; &gt;&gt; ~/.zprofile
+eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;</code></pre></div>
+
+<h3 id="toc_7">Verify Homebrew is working</h3>
+
+<div><pre><code class="language-bash">brew --version</code></pre></div>
+
+<p>You should see something like <code>Homebrew 4.x.x</code>.</p>
+
+<h3 id="toc_8">Homebrew basics</h3>
+
+<div><pre><code class="language-bash"># Install a program
+brew install &lt;package-name&gt;
+
+# Install a GUI application (like VS Code, Docker, etc.)
+brew install --cask &lt;app-name&gt;
+
+# Update Homebrew itself
+brew update
+
+# Upgrade all installed packages
+brew upgrade
+
+# See what you have installed
+brew list
+
+# Search for a package
+brew search &lt;keyword&gt;</code></pre></div>
+
+<h3 id="toc_9">Why Homebrew is great</h3>
+
+<ul>
+<li><strong>One command installs:</strong> No downloading .dmg files and dragging to Applications</li>
+<li><strong>Easy updates:</strong> <code>brew upgrade</code> updates everything at once</li>
+<li><strong>Clean uninstalls:</strong> <code>brew uninstall &lt;package&gt;</code> removes everything cleanly</li>
+<li><strong>Consistent:</strong> Every tool installs the same way</li>
+</ul>
+
+<h3 id="toc_10">Quick install (for the impatient)</h3>
+
+<p>Once Homebrew is set up, you can install most tools in one go:</p>
+
+<div><pre><code class="language-bash"># Install all the GUI apps at once
+brew install --cask iterm2 visual-studio-code docker macdown
+
+# Install Git
+brew install git nvm</code></pre></div>
+
+<p>Then follow the individual sections below for configuration steps.</p>
+
+<hr>
+
+<h2 id="toc_11">3. Setting Up Git and GitHub</h2>
+
+<p>Git tracks your code changes. GitHub stores your code online so your tech partner can access it.</p>
+
+<h3 id="toc_12">Step 1: Install Git via Homebrew</h3>
+
+<p>macOS comes with Git, but it&#39;s often outdated. Install the latest version:</p>
+
+<div><pre><code class="language-bash">brew install git</code></pre></div>
+
+<p>Verify installation:
+<code>bash
+git --version
+</code></p>
+
+<h3 id="toc_13">Step 2: Create a GitHub account</h3>
+
+<ol>
+<li>Go to <a href="https://github.com">github.com</a></li>
+<li>Click &quot;Sign up&quot;</li>
+<li>Use your student email (you get free GitHub Pro as a college student!)</li>
+<li>Verify your email</li>
+</ol>
+
+<h3 id="toc_14">Step 3: Configure Git with your identity</h3>
+
+<div><pre><code class="language-bash">git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;your-email@myuniversity.edu&quot;</code></pre></div>
+
+<h3 id="toc_15">Step 4: Set up SSH keys (so you don&#39;t type passwords constantly)</h3>
+
+<div><pre><code class="language-bash"># Generate a new SSH key
+ssh-keygen -t ed25519 -C &quot;your-email@myuniversity.edu&quot;
+
+# Press Enter to accept default location
+# Enter a passphrase (or leave blank for no passphrase)
+
+# Start the SSH agent
+eval &quot;$(ssh-agent -s)&quot;
+
+# Add your key to the agent
+ssh-add ~/.ssh/id_ed25519
+
+# Copy your public key to clipboard
+pbcopy &lt; ~/.ssh/id_ed25519.pub</code></pre></div>
+
+<p>Now add the key to GitHub:</p>
+
+<ol>
+<li>Go to GitHub → Settings → SSH and GPG keys</li>
+<li>Click &quot;New SSH key&quot;</li>
+<li>Paste your key and save</li>
+</ol>
+
+<h3 id="toc_16">Step 5: Test your connection</h3>
+
+<div><pre><code class="language-bash">ssh -T git@github.com</code></pre></div>
+
+<p>You should see: &quot;Hi username! You&#39;ve successfully authenticated...&quot;</p>
+
+<hr>
+
+<h2 id="toc_17">4. Installing a Better Terminal</h2>
+
+<p>The default Terminal.app works, but <strong>iTerm2</strong> is much better.</p>
+
+<h3 id="toc_18">Install iTerm2</h3>
+
+<div><pre><code class="language-bash">brew install --cask iterm2</code></pre></div>
+
+<p>That&#39;s it! Open iTerm2 from your Applications folder or Spotlight (Cmd + Space, type &quot;iTerm&quot;).</p>
+
+<h3 id="toc_19">Quick iTerm2 setup</h3>
+
+<ol>
+<li>Open iTerm2 → Preferences (Cmd + ,)</li>
+<li>Profiles → Colors → Color Presets → Choose &quot;Solarized Dark&quot; or &quot;Tango Dark&quot;</li>
+<li>Profiles → Text → Font → Change to 14pt for readability</li>
+</ol>
+
+<h3 id="toc_20">Useful iTerm2 features</h3>
+
+<ul>
+<li><strong>Split panes:</strong> Cmd + D (vertical) or Cmd + Shift + D (horizontal)</li>
+<li><strong>New tab:</strong> Cmd + T</li>
+<li><strong>Search:</strong> Cmd + F</li>
+<li><strong>Paste history:</strong> Cmd + Shift + H</li>
+</ul>
+
+<hr>
+
+<h2 id="toc_21">5. Installing a Code Editor</h2>
+
+<p>While Claude Code works in the terminal, you&#39;ll want an editor to view and occasionally tweak files.</p>
+
+<h3 id="toc_22">Recommendation: Visual Studio Code (VS Code)</h3>
+
+<p>It&#39;s free, visual, beginner-friendly, and has great Git integration.</p>
+
+<h3 id="toc_23">Install VS Code</h3>
+
+<div><pre><code class="language-bash">brew install --cask visual-studio-code</code></pre></div>
+
+<p>Open VS Code from Applications or Spotlight (Cmd + Space, type &quot;Visual Studio Code&quot;).</p>
+
+<h3 id="toc_24">Essential extensions for web development</h3>
+
+<p>Open VS Code, click the Extensions icon (4 squares) on the left, and install:</p>
+
+<ol>
+<li><strong>Prettier</strong> - Auto-formats your code</li>
+<li><strong>Live Server</strong> - Preview websites instantly</li>
+<li><strong>GitLens</strong> - See who changed what</li>
+<li><strong>Auto Rename Tag</strong> - Rename HTML tags in pairs</li>
+</ol>
+
+<h3 id="toc_25">Enable opening VS Code from terminal</h3>
+
+<ol>
+<li>Open VS Code</li>
+<li>Press Cmd + Shift + P</li>
+<li>Type &quot;shell command&quot;</li>
+<li>Select &quot;Install &#39;code&#39; command in PATH&quot;</li>
+</ol>
+
+<p>Now you can type <code>code .</code> in any folder to open it in VS Code.</p>
+
+<hr>
+
+<h2 id="toc_26">6. Installing Claude Code Prerequisites</h2>
+
+<p>Claude Code requires Node.js version 18 or higher.</p>
+
+<h3 id="toc_27">Install Node.js using nvm (Node Version Manager)</h3>
+
+<p>Using nvm lets you easily switch Node versions. Install it via Homebrew:</p>
+
+<div><pre><code class="language-bash"># Install nvm
+brew install nvm
+
+# Create nvm&#39;s working directory
+mkdir ~/.nvm</code></pre></div>
+
+<p>Add nvm to your shell profile. Run this command:</p>
+
+<div><pre><code class="language-bash">echo &#39;export NVM_DIR=&quot;$HOME/.nvm&quot;
+[ -s &quot;/opt/homebrew/opt/nvm/nvm.sh&quot; ] &amp;&amp; \. &quot;/opt/homebrew/opt/nvm/nvm.sh&quot;
+[ -s &quot;/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm&quot; ] &amp;&amp; \. &quot;/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm&quot;&#39; &gt;&gt; ~/.zshrc</code></pre></div>
+
+<p>Now restart iTerm2 (close and reopen), then install Node.js:</p>
+
+<div><pre><code class="language-bash"># Verify nvm is working
+nvm --version
+
+# Install the latest LTS (Long Term Support) Node.js
+nvm install --lts
+
+# Verify Node.js installation
+node --version    # Should show v20.x.x or higher
+npm --version     # Should show 10.x.x or higher</code></pre></div>
+
+<hr>
+
+<h2 id="toc_28">7. Installing Claude Code</h2>
+
+<h3 id="toc_29">Step 1: Install Claude Code globally</h3>
+
+<div><pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre></div>
+
+<h3 id="toc_30">Step 2: Authenticate</h3>
+
+<div><pre><code class="language-bash">claude</code></pre></div>
+
+<p>The first time you run this, it will:</p>
+
+<ol>
+<li>Open your browser</li>
+<li>Ask you to log in to your Anthropic account (create one at <a href="https://console.anthropic.com">console.anthropic.com</a> if needed)</li>
+<li>Authorize Claude Code</li>
+</ol>
+
+<h3 id="toc_31">Step 3: Verify it works</h3>
+
+<div><pre><code class="language-bash">claude --version</code></pre></div>
+
+<h3 id="toc_32">Important: API usage costs</h3>
+
+<p>Claude Code uses the Anthropic API, which has usage costs. As a student building prototypes:</p>
+
+<ul>
+<li>Start with the free tier if available</li>
+<li>Monitor your usage at console.anthropic.com</li>
+<li>Consider setting spending limits</li>
+</ul>
+
+<hr>
+
+<h2 id="toc_33">8. Installing Docker</h2>
+
+<p>Docker lets you run databases, servers, and other infrastructure in isolated &quot;containers.&quot; Claude Code can create and manage Docker containers for you.</p>
+
+<h3 id="toc_34">Install Docker Desktop</h3>
+
+<div><pre><code class="language-bash">brew install --cask docker</code></pre></div>
+
+<p>After installation:</p>
+
+<ol>
+<li>Open Docker Desktop from Applications or Spotlight</li>
+<li>Complete the setup wizard (you can skip the tutorial)</li>
+<li>Docker will start running in the background</li>
+</ol>
+
+<h3 id="toc_35">Verify Docker is running</h3>
+
+<p>The Docker whale icon should appear in your menu bar. In terminal:</p>
+
+<div><pre><code class="language-bash">docker --version
+docker ps    # Should show empty list (no containers yet)</code></pre></div>
+
+<h3 id="toc_36">Keep Docker running</h3>
+
+<p>When working with Claude Code on projects that need databases:</p>
+
+<ul>
+<li><strong>Always start Docker Desktop first</strong> before running Claude Code</li>
+<li>Claude Code will automatically create containers when needed</li>
+<li>Docker must be running or database commands will fail</li>
+</ul>
+
+<h3 id="toc_37">Common Docker commands</h3>
+
+<div><pre><code class="language-bash"># See running containers
+docker ps
+
+# See all containers (including stopped)
+docker ps -a
+
+# Stop all running containers
+docker stop $(docker ps -q)
+
+# Clean up unused resources (reclaim disk space)
+docker system prune
+
+# Remove all stopped containers and unused images (more aggressive)
+docker system prune -a</code></pre></div>
+
+<h3 id="toc_38">Example: Claude Code with Docker</h3>
+
+<p>When you tell Claude Code something like &quot;create a web app with a PostgreSQL database,&quot; it will:</p>
+
+<ol>
+<li>Create a <code>docker-compose.yml</code> file</li>
+<li>Run <code>docker-compose up</code> to start the database</li>
+<li>Configure your app to connect to it</li>
+</ol>
+
+<p>You just need Docker Desktop running—Claude Code handles the rest.</p>
+
+<hr>
+
+<h2 id="toc_39">9. Creating Your First Project</h2>
+
+<h3 id="toc_40">Create a projects directory</h3>
+
+<p>Use iterm2 or Terminal to run the following commands.</p>
+
+<div><pre><code class="language-bash"># Create a folder for all your projects
+mkdir -p ~/Projects
+
+# In case you are wondering, the tilda ~ means your home directory, which you would go to
+# if you type cd without any directory specified.
+
+# Navigate to it using change directory (cd)
+cd ~/Projects
+
+# Verify the full path of the present working directory (pwd)
+pwd</code></pre></div>
+
+<h3 id="toc_41">Create a new project</h3>
+
+<div><pre><code class="language-bash"># Create a project folder
+mkdir my-first-website
+
+# Change directory to your new project folder
+cd my-first-website
+
+# Initialize Git
+git init
+
+# Create a basic README
+echo &quot;# My First Website&quot; &gt; README.md
+
+# Make your first commit
+git add .
+git commit -m &quot;Initial commit&quot;</code></pre></div>
+
+<h3 id="toc_42">Connect to GitHub</h3>
+
+<ol>
+<li>Go to GitHub and click &quot;New repository&quot;</li>
+<li>Name it <code>my-first-website</code></li>
+<li>Keep it <strong>Private</strong> (for client work)</li>
+<li><strong>Don&#39;t</strong> initialize with README (you already have one)</li>
+<li>Click &quot;Create repository&quot;</li>
+</ol>
+
+<p>GitHub will show you commands. Run the &quot;push an existing repository&quot; ones:</p>
+
+<div><pre><code class="language-bash">git remote add origin git@github.com:YOUR-USERNAME/my-first-website.git
+git branch -M main
+git push -u origin main</code></pre></div>
+
+<h3 id="toc_43">Start Claude Code in your project</h3>
+
+<div><pre><code class="language-bash"># Make sure you&#39;re in the project directory
+cd ~/Projects/my-first-website
+
+# Start Claude Code
+claude</code></pre></div>
+
+<hr>
+
+<h2 id="toc_44">10. Using Claude Code Effectively</h2>
+
+<h3 id="toc_45">Basic interaction</h3>
+
+<p>Once Claude Code is running, you type natural language requests:</p>
+
+<div><pre><code class="language-none">&gt; Create a simple landing page for a coffee shop called &quot;Boiler Brew&quot;</code></pre></div>
+
+<p>Claude Code will:</p>
+
+<ol>
+<li>Understand your request</li>
+<li>Create the necessary files</li>
+<li>Show you what it&#39;s doing</li>
+<li>Ask questions if needed</li>
+</ol>
+
+<h3 id="toc_46">Essential commands</h3>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>/help</code></td>
+<td>Show available commands</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>Clear conversation history</td>
+</tr>
+<tr>
+<td><code>/cost</code></td>
+<td>Show API usage costs</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>Cancel current operation</td>
+</tr>
+<tr>
+<td><code>Ctrl+D</code> or <code>/exit</code></td>
+<td>Exit Claude Code</td>
+</tr>
+<tr>
+<td><code>Shift+Return</code> or <code>Shiift+Enter</code></td>
+<td>Next line of prompt entry</td>
+</tr>
+<tr>
+<td><code>Return or Enter</code></td>
+<td>Accept prompt and begin processing</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_47">Tips for good prompts</h3>
+
+<p><strong>Be specific about what you want:</strong></p>
+
+<div><pre><code class="language-none">Bad:  &quot;Make a website&quot;
+
+Good: &quot;Create a single-page portfolio website for a photographer with a header,
+       gallery section showing 6 images in a grid, an about section, and a
+       contact form. Use modern CSS with a dark theme.&quot;</code></pre></div>
+
+<p><strong>Mention technologies if you have preferences:</strong></p>
+
+<div><pre><code class="language-none">&quot;Create a landing page using HTML, Tailwind CSS, and vanilla JavaScript.
+No frameworks needed.&quot;</code></pre></div>
+
+<p><strong>Describe the visual style:</strong></p>
+
+<div><pre><code class="language-none">&quot;Use a minimalist design with lots of white space, a sans-serif font like
+Inter, and a blue (#0066CC) accent color.&quot;</code></pre></div>
+
+<hr>
+
+<h2 id="toc_48">11. Planning Mode and One-Shot Builds</h2>
+
+<h3 id="toc_49">The Power of Planning</h3>
+
+<p>Good planning leads to cleaner builds. Claude Code has a <strong>Planning Mode</strong> that helps you think through the project before writing code.</p>
+
+<p>It takes time up front to think through and design what you want to have Claude build for you.</p>
+
+<p>This up-front time investment pays dividends, however.  Every 10 minutes invested in forethought and planning prior to the build will save hours of rework, testing and tedious debugging later.</p>
+
+<h3 id="toc_50">Using Planning Mode</h3>
+
+<p>Start your session by asking Claude Code to plan:</p>
+
+<div><pre><code class="language-none">&gt; I want to build a portfolio website for a freelance graphic designer.
+  Before we build anything, let&#39;s create a detailed plan. Please enter
+  planning mode and help me think through:
+  - What pages we need
+  - What components each page should have
+  - What the file structure should look like
+  - What technologies to use
+  Save the plan to CLAUDE.md when we&#39;re done.</code></pre></div>
+
+<p>Claude Code will:</p>
+
+<ol>
+<li>Enter planning mode</li>
+<li>Explore options with you</li>
+<li>Ask clarifying questions</li>
+<li>Create a comprehensive plan</li>
+<li>Save it to <code>CLAUDE.md</code></li>
+</ol>
+
+<h3 id="toc_51">The CLAUDE.md file</h3>
+
+<p>This is your project&#39;s &quot;memory.&quot; It contains:</p>
+
+<ul>
+<li>Project overview</li>
+<li>Technical decisions</li>
+<li>File structure</li>
+<li>Implementation plan</li>
+<li>Notes for future sessions</li>
+</ul>
+
+<p><strong>Always create this file at the start of a project.</strong> Claude Code reads it automatically when you start a session in that folder.</p>
+
+<h3 id="toc_52">Example CLAUDE.md structure</h3>
+
+<div><pre><code class="language-markdown"># Project: Designer Portfolio
+
+## Overview
+Portfolio website for Jane Doe, freelance graphic designer.
+
+## Tech Stack
+- HTML5
+- Tailwind CSS (via CDN)
+- Vanilla JavaScript
+- No backend needed (static site)
+
+## Pages
+1. Home - Hero with name/tagline, featured work (3 items)
+2. Portfolio - Grid gallery with category filters
+3. About - Bio, skills, photo
+4. Contact - Form (using Formspree for handling)
+
+## File Structure
+/
+├── index.html
+├── portfolio.html
+├── about.html
+├── contact.html
+├── css/
+│   └── custom.css
+├── js/
+│   └── main.js
+└── images/
+    └── (placeholder images for now)
+
+## Design Notes
+- Color palette: Navy (#1a365d), Gold (#d69e2e), White
+- Font: Playfair Display for headings, Inter for body
+- Mobile-first responsive design
+
+## Implementation Order
+1. Set up file structure
+2. Create shared header/footer
+3. Build home page
+4. Build portfolio page with filter
+5. Build about page
+6. Build contact page with form
+7. Add responsive adjustments
+8. Test all pages</code></pre></div>
+
+<h3 id="toc_53">One-Shot Build Strategy</h3>
+
+<p>After planning, aim for a <strong>one-shot build</strong>—giving Claude Code enough context to build everything correctly the first time.</p>
+
+<div><pre><code class="language-none">&gt; Now let&#39;s build this. Using the plan in CLAUDE.md, create the complete
+  portfolio website. Build all pages, make sure navigation works between
+  them, and include placeholder content. I want to be able to open
+  index.html in a browser and have a fully functional site.</code></pre></div>
+
+<p><strong>Why one-shot builds are better:</strong></p>
+
+<ul>
+<li>Less back-and-forth means lower API costs</li>
+<li>Fewer iterations mean fewer bugs</li>
+<li>Complete context leads to more consistent code</li>
+<li>You learn to communicate requirements clearly</li>
+</ul>
+
+<p><strong>Tips for successful one-shot builds:</strong></p>
+
+<ol>
+<li>Spend 30% of your time on the plan</li>
+<li>Be very specific about requirements</li>
+<li>Include examples or references when possible</li>
+<li>Describe edge cases upfront</li>
+<li>Review the plan before building</li>
+</ol>
+
+<p>In the early stages of building and iteration, it may be better, faster and more efficient to go back and update your plan, delete all of the previous work and do another one-shot build from scratch, with your updated plan.</p>
+
+<p>Minor tweaks like changing colors, updating text or even adding new pages can be done as modifications to the existing build; however, major revisions of existing pages and functionality may be better done as a new one-shot build. Remember to save your color, text and page tweaks back to your plan, in case you decide to do another one-shot build later.</p>
+
+<h3 id="toc_54">Managing Multiple Builds (Beginner Workflow)</h3>
+
+<p>When you&#39;re learning Claude Code, don&#39;t worry about Git right away. Use simple numbered directories for your early experiments:</p>
+
+<div><pre><code class="language-none">~/Projects/client-portfolio/
+├── CLAUDE.md              # Your master plan (keep at top level)
+├── builds/
+│   ├── v0.1/              # First attempt - learning the ropes
+│   ├── v0.2/              # Better prompts, improved design
+│   └── v0.3/              # Almost there...
+└── v1.0/                  # Ready for client! Initialize Git here.</code></pre></div>
+
+<p><strong>Why this works:</strong></p>
+
+<ol>
+<li><strong>Focus on one skill at a time</strong> - Learn Claude Code first, Git later</li>
+<li><strong>Easy comparison</strong> - Open two builds side-by-side in VS Code or Finder</li>
+<li><strong>No fear of breaking things</strong> - Can&#39;t mess up a Git repo if there isn&#39;t one</li>
+<li><strong>Keep your experiments</strong> - Failed attempts are learning opportunities, not clutter</li>
+</ol>
+
+<p><strong>The workflow:</strong></p>
+
+<ol>
+<li><p>Create your project folder and write your plan in <code>CLAUDE.md</code></p></li>
+<li><p>Set up and enter your first build directory:</p>
+
+<div><pre><code class="language-bash"># Create the builds folder and v0.1
+mkdir -p ~/Projects/client-portfolio/builds/v0.1
+
+# Change into the build directory
+cd ~/Projects/client-portfolio/builds/v0.1
+
+# Copy your plan here so Claude can read it
+cp ../../CLAUDE.md .</code></pre></div></li>
+<li><p>Start Claude Code and do your one-shot build:</p>
+
+<div><pre><code class="language-bash"># Make sure you&#39;re in the build directory
+pwd
+
+# Should show: /Users/yourname/Projects/client-portfolio/builds/v0.1
+
+# Start Claude Code
+claude</code></pre></div>
+
+<p><strong>Important:</strong> Claude Code creates files in your current directory. Always <code>cd</code> into the build folder before running <code>claude</code>.</p></li>
+<li><p>Review the result. Update your master plan (<code>../../CLAUDE.md</code>) with lessons learned</p></li>
+<li><p>Create the next build and try again:</p>
+
+<div><pre><code class="language-bash"># Go back to project folder
+cd ~/Projects/client-portfolio
+
+# Create next build directory
+mkdir builds/v0.2
+cd builds/v0.2
+
+# Copy your updated plan
+cp ../../CLAUDE.md .
+
+# Run Claude Code again
+claude</code></pre></div></li>
+<li><p>Repeat until you have something worth showing a client</p></li>
+<li><p>When you&#39;re happy, promote your best build to v1.0:</p>
+
+<div><pre><code class="language-bash"># Go back to project folder
+cd ~/Projects/client-portfolio
+
+# Copy your best build to v1.0 (let&#39;s say v0.3 was the winner)
+# NOTE: The cp command below creates the v1.0 directory automatically
+# Don&#39;t pre-create the v1.0 directory using mkdir, otherwise the v0.3 will get created under
+# the pre-exising v1.0 directory:
+cp -r builds/v0.3 v1.0
+
+# The CLAUDE.md should already be in there from when you built it</code></pre></div></li>
+<li><p><strong>Now</strong> initialize Git in <code>v1.0/</code> and push to GitHub</p></li>
+</ol>
+
+<p><strong>When to initialize Git (the v1.0 moment):</strong></p>
+
+<ul>
+<li>The build is ready to show a client</li>
+<li>You&#39;re handing off to your tech partner for deployment</li>
+<li>You want to start tracking incremental changes (not wholesale rebuilds)</li>
+</ul>
+
+<div><pre><code class="language-bash">cd ~/Projects/client-portfolio/v1.0
+git init
+git add .
+git commit -m &quot;Initial v1.0 build - ready for deployment&quot;
+
+# Then connect to GitHub as shown in Section 9</code></pre></div>
+
+<p><strong>After v1.0:</strong> Now Git makes sense. Use it to track changes, fixes, and enhancements. Your Git history will be clean and meaningful—showing intentional changes rather than your learning journey.</p>
+
+<p><strong>Pro tip:</strong> Keep your <code>builds/</code> folder around even after v1.0. You might want to reference an old approach, or your client might say &quot;I liked that thing from the second version better.&quot;</p>
+
+<h3 id="toc_55">Cleaning Up Old Builds</h3>
+
+<p>Once you&#39;re confident you no longer need your experimental builds, you can delete them to free up disk space.</p>
+
+<p><strong>When it&#39;s safe to clean up:</strong></p>
+
+<ul>
+<li>The client has approved the final version</li>
+<li>The project has been deployed and is running smoothly</li>
+<li>You&#39;re certain you won&#39;t need to reference old approaches</li>
+</ul>
+
+<p><strong>Option 1: Use Finder (safest)</strong></p>
+
+<p>Simply drag the <code>builds</code> folder to the Trash. This way you can recover it if you change your mind (until you empty the Trash).</p>
+
+<p><strong>Option 2: Delete from the terminal</strong></p>
+
+<div><pre><code class="language-bash"># From the project folder
+cd ~/Projects/client-portfolio
+
+# Delete all experimental builds at once
+rm -rf builds/
+
+# Or delete specific versions selectively
+rm -rf builds/v0.1 builds/v0.2</code></pre></div>
+
+<p><strong>Warning:</strong> <code>rm -rf</code> is permanent—there&#39;s no undo or Trash. Double-check you&#39;re deleting the right folder before pressing Enter. If you&#39;re not 100% sure, use Finder instead.</p>
+
+<hr>
+
+<h2 id="toc_56">12. Recommended Free Tools</h2>
+
+<h3 id="toc_57">Markdown Editor/Viewer</h3>
+
+<p>For editing CLAUDE.md and documentation:</p>
+
+<p><strong>MacDown</strong> (Free, Mac-only)</p>
+
+<div><pre><code class="language-bash">brew install --cask macdown</code></pre></div>
+
+<ul>
+<li>Live preview as you type</li>
+<li>Simple and lightweight</li>
+</ul>
+
+<p>Alternative: VS Code has built-in Markdown preview (Cmd + Shift + V)</p>
+
+<h3 id="toc_58">Code Editor (Beyond VS Code)</h3>
+
+<p>If you find VS Code overwhelming:</p>
+
+<p><strong>Zed</strong> (Free, Mac-only)</p>
+
+<div><pre><code class="language-bash">brew install --cask zed</code></pre></div>
+
+<ul>
+<li>Very fast and minimal</li>
+<li>Good for beginners</li>
+<li>Built-in AI features</li>
+</ul>
+
+<h3 id="toc_59">Design/Prototyping</h3>
+
+<p><strong>Figma</strong> (Free tier available)</p>
+
+<ul>
+<li>Browser-based, no install needed</li>
+<li>Great for planning website layouts visually</li>
+<li>Your designer clients might send you Figma files</li>
+</ul>
+
+<h3 id="toc_60">Browser for Development</h3>
+
+<p><strong>Chrome or Firefox Developer Edition</strong></p>
+
+<ul>
+<li>Built-in DevTools (right-click → Inspect)</li>
+<li>Essential for debugging CSS and JavaScript</li>
+</ul>
+
+<hr>
+
+<h2 id="toc_61">13. Example Prompts to Try</h2>
+
+<h3 id="toc_62">Starter project (try this first!)</h3>
+
+<div><pre><code class="language-none">Create a simple personal landing page with:
+- A centered hero section with my name &quot;Your Name&quot; and tagline &quot;Engineering Student &amp; Web Developer&quot;
+- A brief about section
+- Links to GitHub, LinkedIn, and email
+- Use a clean, modern design with a dark theme
+- Make it responsive for mobile</code></pre></div>
+
+<h3 id="toc_63">Business landing page</h3>
+
+<div><pre><code class="language-none">Create a landing page for a local tutoring business called &quot;Boilermaker Tutoring&quot;:
+- Hero section with headline, subheadline, and a &quot;Book a Session&quot; button
+- Section listing 4 subjects offered (Math, Physics, Chemistry, CS)
+- Testimonials section with 3 fake student reviews
+- Contact section with address, phone, and email
+- Use your university&#39;s colors (Old Gold and Black) as the color scheme
+- Include smooth scroll navigation</code></pre></div>
+
+<h3 id="toc_64">Portfolio website</h3>
+
+<div><pre><code class="language-none">Build a 3-page portfolio website for a graphic designer:
+- Home page with hero, featured work preview (3 items), and call to action
+- Portfolio page with a grid of 9 project thumbnails with hover effects
+- Contact page with a styled form
+
+Use placeholder images from picsum.photos. Make the design minimal
+and typography-focused.</code></pre></div>
+
+<h3 id="toc_65">Interactive component</h3>
+
+<div><pre><code class="language-none">Create an interactive pricing calculator for web design services:
+- Checkboxes for features (Landing Page $500, Additional Pages $200 each,
+  Contact Form $150, Gallery $300, E-commerce $1000)
+- Slider for number of additional pages (0-10)
+- Live total that updates as options change
+- &quot;Get Quote&quot; button that shows a summary
+Make it look professional with good spacing and animations.</code></pre></div>
+
+<h3 id="toc_66">With Docker (database project)</h3>
+
+<div><pre><code class="language-none">Create a simple bookmark manager web app with:
+- Form to add a bookmark (URL, title, tags)
+- List view of all bookmarks with search/filter
+- Ability to delete bookmarks
+- Use Node.js with Express for the backend
+- PostgreSQL database for storage (use Docker)
+- Simple frontend with vanilla HTML/CSS/JS
+
+Make sure to include the docker-compose.yml file and instructions
+to run everything.</code></pre></div>
+
+<hr>
+
+<h2 id="toc_67">14. Working with Your Offshore Tech Partner</h2>
+
+<h3 id="toc_68">Sharing access via GitHub</h3>
+
+<p>Add your offshore tech partner as a collaborator:</p>
+
+<ol>
+<li>Go to your repository on GitHub</li>
+<li>Settings → Collaborators</li>
+<li>Add their GitHub username or email</li>
+</ol>
+
+<h3 id="toc_69">Branch workflow</h3>
+
+<p>Keep your main branch stable:</p>
+
+<div><pre><code class="language-bash">
+# Create a new branch for each feature
+
+git checkout -b feature/new-landing-page
+
+# Do your work with Claude Code...
+
+# Commit your changes
+
+git add .
+git commit -m &quot;Add new landing page design&quot;
+
+# Push the branch
+
+git push -u origin feature/new-landing-page
+
+# Create a Pull Request on GitHub for your partner to review
+</code></pre></div>
+
+<h3 id="toc_70">Communication through code</h3>
+
+<p>Add notes in CLAUDE.md for your partner:</p>
+
+<div><pre><code class="language-markdown">## Deployment Notes
+- Site is static HTML/CSS/JS
+- Can be deployed to Netlify, Vercel, or any static host
+- No backend required
+- Contact form uses Formspree (account: xyz@email.com)
+
+## For Tech Partner
+- Database credentials are in .env (not committed)
+- Docker setup: run `docker-compose up` before starting
+- See /docs folder for API documentation</code></pre></div>
+
+<h3 id="toc_71">.gitignore essentials</h3>
+
+<p>Create a <code>.gitignore</code> file to avoid committing unnecessary files:</p>
+
+<div><pre><code class="language-bash"># Ask Claude Code to create it
+&gt; Create a .gitignore file appropriate for a Node.js web project</code></pre></div>
+
+<p>Or create it manually:</p>
+
+<div><pre><code class="language-none">node_modules/
+.env
+.DS_Store
+*.log
+dist/
+.cache/</code></pre></div>
+
+<hr>
+
+<h2 id="toc_72">Quick Start Checklist</h2>
+
+<ul>
+<li>[ ] Choose MacBook Air as your development machine</li>
+<li>[ ] Install Homebrew</li>
+<li>[ ] Install Git (<code>brew install git</code>)</li>
+<li>[ ] Create GitHub account with university email</li>
+<li>[ ] Set up Git config and SSH keys</li>
+<li>[ ] Install iTerm2 (<code>brew install --cask iterm2</code>)</li>
+<li>[ ] Install VS Code (<code>brew install --cask visual-studio-code</code>)</li>
+<li>[ ] Install VS Code extensions</li>
+<li>[ ] Install nvm (<code>brew install nvm</code>)</li>
+<li>[ ] Install Node.js (<code>nvm install --lts</code>)</li>
+<li>[ ] Install Claude Code (<code>npm install -g @anthropic-ai/claude-code</code>)</li>
+<li>[ ] Create Anthropic account for API access</li>
+<li>[ ] Install Docker Desktop (<code>brew install --cask docker</code>)</li>
+<li>[ ] Create your ~/Projects directory</li>
+<li>[ ] Create your first project folder</li>
+<li>[ ] Initialize Git and connect to GitHub</li>
+<li>[ ] Run Claude Code and try the starter prompt!</li>
+</ul>
+
+<hr>
+
+<h2 id="toc_73">Getting Help</h2>
+
+<ul>
+<li><strong>Claude Code issues:</strong> Type <code>/help</code> or ask Claude Code itself</li>
+<li><strong>Git problems:</strong> Ask Claude Code &quot;I&#39;m having a git issue where...&quot;</li>
+<li><strong>General questions:</strong> Claude Code can explain concepts too</li>
+</ul>
+
+<p>Remember: Claude Code is your pair programmer. Describe what you want clearly, plan before you build, and don&#39;t be afraid to ask it questions. Good luck with your web prototyping business!</p>
+
+<hr>
+
+<p><em>Guide created for Engineering students getting started with Claude Code</em>
+<em>Last updated: November 2025</em></p>
+
+
+
+
+</body>
+
+</html>
