@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Claude Code Getting Started Guide (Windows Edition)</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style>
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 15px;
+line-height: 1.6;
+color: #24292e;
+background-color: #fff;
+max-width: 860px;
+margin: 40px auto;
+padding: 0 30px;
+}
+h1, h2, h3, h4 { font-weight: 600; margin-top: 24px; margin-bottom: 16px; }
+h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+h3 { font-size: 1.25em; }
+a { color: #0366d6; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+font-family: "SF Mono", Menlo, Consolas, monospace;
+font-size: 13px;
+background-color: rgba(27,31,35,0.05);
+padding: 0.2em 0.4em;
+border-radius: 3px;
+}
+pre {
+background-color: #f6f8fa;
+padding: 16px;
+border-radius: 6px;
+overflow: auto;
+line-height: 1.45;
+page-break-inside: avoid;
+}
+pre code { background: transparent; padding: 0; font-size: 13px; white-space: pre-wrap; word-wrap: break-word; }
+table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+th { background-color: #f6f8fa; font-weight: 600; }
+blockquote {
+margin: 16px 0;
+padding: 0 1em;
+color: #6a737d;
+border-left: 0.25em solid #dfe2e5;
+}
+hr { border: 0; border-top: 1px solid #eaecef; margin: 24px 0; }
+ul, ol { padding-left: 2em; }
+li { margin: 0.25em 0; }
+nav#TOC ul { list-style: none; padding-left: 1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #0366d6; }
+@page { size: letter; margin: 0.75in; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Claude Code Getting Started Guide (Windows
+Edition)</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#claude-code-getting-started-guide-for-aspiring-web-developers-windows-edition" id="toc-claude-code-getting-started-guide-for-aspiring-web-developers-windows-edition">Claude
+Code Getting Started Guide for Aspiring Web Developers (Windows
+Edition)</a>
+<ul>
+<li><a href="#a-practical-guide-for-building-prototype-websites-on-windows" id="toc-a-practical-guide-for-building-prototype-websites-on-windows">A
+Practical Guide for Building Prototype Websites on Windows</a></li>
+<li><a href="#table-of-contents" id="toc-table-of-contents">Table of
+Contents</a></li>
+<li><a href="#1-setting-up-your-windows-machine" id="toc-1-setting-up-your-windows-machine">1. Setting Up Your Windows
+Machine</a></li>
+<li><a href="#2-installing-wsl2-ubuntu-on-windows" id="toc-2-installing-wsl2-ubuntu-on-windows">2. Installing WSL2 (Ubuntu
+on Windows)</a></li>
+<li><a href="#3-setting-up-git-and-github" id="toc-3-setting-up-git-and-github">3. Setting Up Git and
+GitHub</a></li>
+<li><a href="#4-installing-windows-terminal" id="toc-4-installing-windows-terminal">4. Installing Windows
+Terminal</a></li>
+<li><a href="#5-installing-a-code-editor" id="toc-5-installing-a-code-editor">5. Installing a Code Editor</a></li>
+<li><a href="#6-installing-claude-code-prerequisites" id="toc-6-installing-claude-code-prerequisites">6. Installing Claude
+Code Prerequisites</a></li>
+<li><a href="#7-installing-claude-code" id="toc-7-installing-claude-code">7. Installing Claude Code</a></li>
+<li><a href="#8-installing-docker" id="toc-8-installing-docker">8.
+Installing Docker</a></li>
+<li><a href="#9-creating-your-first-project" id="toc-9-creating-your-first-project">9. Creating Your First
+Project</a></li>
+<li><a href="#10-using-claude-code-effectively" id="toc-10-using-claude-code-effectively">10. Using Claude Code
+Effectively</a></li>
+<li><a href="#11-planning-mode-and-one-shot-builds" id="toc-11-planning-mode-and-one-shot-builds">11. Planning Mode and
+One-Shot Builds</a></li>
+<li><a href="#12-recommended-free-tools" id="toc-12-recommended-free-tools">12. Recommended Free Tools</a></li>
+<li><a href="#13-example-prompts-to-try" id="toc-13-example-prompts-to-try">13. Example Prompts to Try</a></li>
+<li><a href="#14-working-with-your-tech-partner" id="toc-14-working-with-your-tech-partner">14. Working with Your Tech
+Partner</a></li>
+<li><a href="#15-appendix-native-windows-setup-no-wsl2" id="toc-15-appendix-native-windows-setup-no-wsl2">15. Appendix: Native
+Windows Setup (No WSL2)</a></li>
+<li><a href="#quick-start-checklist" id="toc-quick-start-checklist">Quick Start Checklist</a></li>
+<li><a href="#getting-help" id="toc-getting-help">Getting Help</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="claude-code-getting-started-guide-for-aspiring-web-developers-windows-edition">Claude
+Code Getting Started Guide for Aspiring Web Developers (Windows
+Edition)</h1>
+<h2 id="a-practical-guide-for-building-prototype-websites-on-windows">A
+Practical Guide for Building Prototype Websites on Windows</h2>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#1-setting-up-your-windows-machine">Setting Up Your Windows
+Machine</a></li>
+<li><a href="#2-installing-wsl2-ubuntu-on-windows">Installing WSL2
+(Ubuntu on Windows)</a></li>
+<li><a href="#3-setting-up-git-and-github">Setting Up Git and
+GitHub</a></li>
+<li><a href="#4-installing-windows-terminal">Installing Windows
+Terminal</a></li>
+<li><a href="#5-installing-a-code-editor">Installing a Code
+Editor</a></li>
+<li><a href="#6-installing-claude-code-prerequisites">Installing Claude
+Code Prerequisites</a></li>
+<li><a href="#7-installing-claude-code">Installing Claude Code</a></li>
+<li><a href="#8-installing-docker">Installing Docker</a></li>
+<li><a href="#9-creating-your-first-project">Creating Your First
+Project</a></li>
+<li><a href="#10-using-claude-code-effectively">Using Claude Code
+Effectively</a></li>
+<li><a href="#11-planning-mode-and-one-shot-builds">Planning Mode and
+One-Shot Builds</a></li>
+<li><a href="#12-recommended-free-tools">Recommended Free Tools</a></li>
+<li><a href="#13-example-prompts-to-try">Example Prompts to Try</a></li>
+<li><a href="#14-working-with-your-tech-partner">Working with Your Tech
+Partner</a></li>
+<li><a href="#15-appendix-native-windows-setup-no-wsl2">Appendix: Native
+Windows Setup (No WSL2)</a></li>
+</ol>
+<hr />
+<h2 id="1-setting-up-your-windows-machine">1. Setting Up Your Windows
+Machine</h2>
+<h3 id="recommendation-use-wsl2-windows-subsystem-for-linux">Recommendation:
+Use WSL2 (Windows Subsystem for Linux)</h3>
+<p>Modern Windows machines are excellent development environments — once
+you turn on <strong>WSL2</strong>. WSL2 runs a real Ubuntu Linux kernel
+inside Windows, so you get the same <code>bash</code> shell, the same
+package manager (<code>apt</code>), and the same file paths
+(<code>~/projects</code>) that web developers use on Mac and Linux.</p>
+<p><strong>Why WSL2 is the right path for web development:</strong></p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th>Factor</th>
+<th>WSL2 on Windows</th>
+<th>Native Windows (PowerShell)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terminal/CLI</td>
+<td>Real bash/zsh</td>
+<td>PowerShell or Git Bash</td>
+</tr>
+<tr>
+<td>Node.js/npm</td>
+<td>Works seamlessly</td>
+<td>Works, but path edge cases</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>Native WSL2 backend</td>
+<td>Hyper-V backend (slower)</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Pre-installed in Ubuntu</td>
+<td>Needs Git for Windows</td>
+</tr>
+<tr>
+<td>Path issues</td>
+<td>Rare</td>
+<td>Common (spaces, backslashes)</td>
+</tr>
+<tr>
+<td>Matches Mac guides/tutorials</td>
+<td>Yes (almost line-for-line)</td>
+<td>Often needs translation</td>
+</tr>
+<tr>
+<td>Anthropic’s recommendation</td>
+<td>Yes</td>
+<td>Supported but secondary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hardware notes:</strong></p>
+<ul>
+<li>Any Windows 10 (version 2004+) or Windows 11 machine will run
+WSL2.</li>
+<li>Aim for <strong>16 GB RAM</strong> if you can (8 GB works, but WSL2
++ Docker + VS Code + a browser will feel tight).</li>
+<li><strong>256 GB SSD or larger.</strong> A typical web project is
+under 500 MB, so you can store 50+ projects easily. Use GitHub as your
+backup/archive.</li>
+<li>WSL2 stores its Linux filesystem inside a virtual disk — by default
+on <code>C:\</code>. If your <code>C:</code> drive is small, see the WSL
+docs for moving the distro to another drive.</li>
+</ul>
+<p><strong>Tips to manage storage:</strong></p>
+<ul>
+<li>Delete <code>node_modules</code> folders from inactive projects (run
+<code>npm install</code> to restore).</li>
+<li>Use <code>npx</code> to run tools without installing globally.</li>
+<li>Clean Docker images periodically:
+<code>docker system prune</code>.</li>
+<li>WSL2’s disk image can grow over time — see Microsoft’s docs for
+“compact WSL2 vhdx” when needed.</li>
+</ul>
+<blockquote>
+<p>If you really cannot or do not want to use WSL2 (for example, your IT
+department blocks virtualization), see <a href="#15-appendix-native-windows-setup-no-wsl2">Section 15: Native
+Windows Setup</a>. The rest of the main guide assumes WSL2.</p>
+</blockquote>
+<hr />
+<h2 id="2-installing-wsl2-ubuntu-on-windows">2. Installing WSL2 (Ubuntu
+on Windows)</h2>
+<p>WSL2 (Windows Subsystem for Linux, version 2) is Microsoft’s official
+way to run Linux on Windows. Once installed, you’ll have an Ubuntu
+terminal that behaves like a Mac or Linux development machine.</p>
+<h3 id="step-1-install-wsl2-with-one-command">Step 1: Install WSL2 with
+one command</h3>
+<ol type="1">
+<li><p>Click the <strong>Start</strong> menu, type
+<strong>“PowerShell”</strong>, right-click it, and choose <strong>“Run
+as administrator”</strong>.</p></li>
+<li><p>In the PowerShell window, run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code></pre></div></li>
+</ol>
+<p>This single command will:</p>
+<ol type="1">
+<li>Enable the Windows features WSL needs.</li>
+<li>Download and install the WSL2 Linux kernel.</li>
+<li>Install Ubuntu (the default Linux distribution).</li>
+<li>Prompt you to <strong>restart your computer</strong>.</li>
+</ol>
+<p>After the restart, Ubuntu will finish setting itself up and open a
+terminal window. It will ask you to create a <strong>UNIX
+username</strong> and <strong>password</strong>:</p>
+<ul>
+<li>Pick a short, lowercase username (e.g., <code>dave</code>). It
+doesn’t have to match your Windows username.</li>
+<li>Pick a password you’ll remember — you’ll occasionally need it for
+<code>sudo</code> commands.</li>
+<li>The password will look like nothing is being typed when you enter
+it. That’s normal in Linux.</li>
+</ul>
+<p><strong>About <code>sudo</code>:</strong> In Linux, <code>sudo</code>
+runs a command as the system administrator. You’ll need it a few times
+during setup, mostly for <code>sudo apt install ...</code>. Don’t make a
+habit of running random scripts with <code>sudo</code> — if you
+accidentally run malicious code as administrator, it can damage the
+entire Linux environment.</p>
+<h3 id="step-2-verify-wsl2-is-working">Step 2: Verify WSL2 is
+working</h3>
+<p>Open a new PowerShell window (regular, not admin) and run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>status</span></code></pre></div>
+<p>You should see something like:</p>
+<pre><code>Default Distribution: Ubuntu
+Default Version: 2</code></pre>
+<p>If it says <strong>Version: 1</strong>, run this to upgrade:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>set-default-version <span class="dv">2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">wsl</span> <span class="op">--</span>set-version Ubuntu <span class="dv">2</span></span></code></pre></div>
+<h3 id="step-3-update-ubuntus-package-list">Step 3: Update Ubuntu’s
+package list</h3>
+<p>Open Ubuntu (search “Ubuntu” in the Start menu, or just type
+<code>wsl</code> in PowerShell) and run:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
+<p>This updates the list of available packages and upgrades anything
+that came pre-installed. It’s the WSL/Ubuntu equivalent of
+<code>brew update &amp;&amp; brew upgrade</code> on a Mac.</p>
+<h3 id="step-4-learn-the-basics-of-apt">Step 4: Learn the basics of
+<code>apt</code></h3>
+<p><code>apt</code> is Ubuntu’s package manager. It’s the equivalent of
+Homebrew on Mac.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a program</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="op">&lt;</span>package-name<span class="op">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the list of available packages</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Upgrade everything you have installed</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a program</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt remove <span class="op">&lt;</span>package-name<span class="op">&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for a package</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> search <span class="op">&lt;</span>keyword<span class="op">&gt;</span></span></code></pre></div>
+<p>You’ll use <code>apt</code> for system tools (Git, curl, build
+tools). For Node.js and Claude Code we’ll use a different tool
+(<code>nvm</code>), and for GUI Windows apps we’ll use
+<strong>winget</strong> in PowerShell — covered below.</p>
+<h3 id="step-5-understand-your-two-filesystems">Step 5: Understand your
+two filesystems</h3>
+<p>WSL2 gives you two filesystems, and it matters which one you use:</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 30%" />
+<col style="width: 32%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr>
+<th>Where</th>
+<th>Path in Ubuntu</th>
+<th>Path in Windows</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux home</td>
+<td><code>~</code> or <code>/home/you</code></td>
+<td><code>\\wsl$\Ubuntu\home\you</code></td>
+<td><strong>Your projects go here.</strong> Fast.</td>
+</tr>
+<tr>
+<td>Windows drive</td>
+<td><code>/mnt/c/Users/You</code></td>
+<td><code>C:\Users\You</code></td>
+<td>Only when you need to hand a file to a Windows-only program.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong> Keep all your code under
+<code>~/projects</code> in Ubuntu. Don’t put projects under
+<code>/mnt/c/...</code> — WSL2 is dramatically slower when working
+across the boundary, and <code>npm install</code> can take 10x
+longer.</p>
+<p>You can still open WSL files from Windows File Explorer by typing
+<code>\\wsl$\Ubuntu\home\&lt;your-username&gt;</code> in the address
+bar.</p>
+<hr />
+<h2 id="3-setting-up-git-and-github">3. Setting Up Git and GitHub</h2>
+<p>Git tracks your code changes. GitHub stores your code online so your
+tech partner can access it.</p>
+<h3 id="step-1-install-git-in-ubuntu">Step 1: Install Git in Ubuntu</h3>
+<p>Ubuntu usually ships with Git, but it’s worth installing the
+latest:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git <span class="at">-y</span></span></code></pre></div>
+<p>Verify installation:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div>
+<h3 id="step-2-create-a-github-account">Step 2: Create a GitHub
+account</h3>
+<ol type="1">
+<li>Go to <a href="https://github.com">github.com</a>.</li>
+<li>Click <strong>“Sign up”</strong>.</li>
+<li>Use your student email if you have one (students get free GitHub
+Pro).</li>
+<li>Verify your email.</li>
+</ol>
+<h3 id="step-3-configure-git-with-your-identity">Step 3: Configure Git
+with your identity</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Your Name&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;your-email@example.com&quot;</span></span></code></pre></div>
+<h3 id="step-4-set-up-ssh-keys-so-you-dont-type-passwords-constantly">Step
+4: Set up SSH keys (so you don’t type passwords constantly)</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a new SSH key</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;your-email@example.com&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Press Enter to accept default location</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter a passphrase (or leave blank for no passphrase)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the SSH agent</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your key to the agent</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy your public key to the Windows clipboard</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (clip.exe is a Windows tool — WSL2 lets you call it from Ubuntu!)</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub <span class="kw">|</span> <span class="ex">clip.exe</span></span></code></pre></div>
+<blockquote>
+<p><strong>macOS equivalent:</strong> On Mac the command is
+<code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code>. In WSL2 we pipe to
+<code>clip.exe</code> — a nice example of how WSL2 lets Linux and
+Windows tools talk to each other.</p>
+</blockquote>
+<p>Now add the key to GitHub:</p>
+<ol type="1">
+<li>Go to GitHub → <strong>Settings</strong> → <strong>SSH and GPG
+keys</strong>.</li>
+<li>Click <strong>“New SSH key”</strong>.</li>
+<li>Paste your key (Ctrl+V) and save.</li>
+</ol>
+<h3 id="step-5-test-your-connection">Step 5: Test your connection</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div>
+<p>You should see: <strong>“Hi username! You’ve successfully
+authenticated…”</strong></p>
+<p>The first time, it will ask you to confirm GitHub’s fingerprint —
+type <code>yes</code> and press Enter.</p>
+<hr />
+<h2 id="4-installing-windows-terminal">4. Installing Windows
+Terminal</h2>
+<p>The default “Ubuntu” window works, but <strong>Windows
+Terminal</strong> is much better. It supports tabs, splits, and lets you
+open PowerShell, Ubuntu, and Command Prompt side-by-side.</p>
+<h3 id="install-windows-terminal">Install Windows Terminal</h3>
+<p>Windows 11 comes with Windows Terminal pre-installed. If you’re on
+Windows 10 or want the latest version, install it from the Microsoft
+Store:</p>
+<ol type="1">
+<li>Open the <strong>Microsoft Store</strong>.</li>
+<li>Search for <strong>“Windows Terminal”</strong>.</li>
+<li>Click <strong>Install</strong>.</li>
+</ol>
+<p>Or install it via <code>winget</code> from PowerShell:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Microsoft<span class="op">.</span><span class="fu">WindowsTerminal</span> <span class="op">-</span>e</span></code></pre></div>
+<h3 id="make-ubuntu-the-default-profile">Make Ubuntu the default
+profile</h3>
+<ol type="1">
+<li>Open <strong>Windows Terminal</strong>.</li>
+<li>Click the dropdown arrow (˅) in the title bar →
+<strong>Settings</strong>.</li>
+<li>Under <strong>Startup → Default profile</strong>, choose
+<strong>Ubuntu</strong>.</li>
+<li>Save.</li>
+</ol>
+<p>Now every new Terminal window opens straight into Ubuntu.</p>
+<h3 id="quick-windows-terminal-setup">Quick Windows Terminal setup</h3>
+<ol type="1">
+<li><strong>Settings → Appearance → Theme:</strong> Dark.</li>
+<li><strong>Settings → Profiles → Ubuntu → Appearance → Color
+scheme:</strong> Try “One Half Dark” or “Solarized Dark”.</li>
+<li><strong>Settings → Profiles → Ubuntu → Appearance → Font
+face:</strong> Cascadia Mono or “Cascadia Code”, size 14.</li>
+</ol>
+<h3 id="useful-windows-terminal-shortcuts">Useful Windows Terminal
+shortcuts</h3>
+<ul>
+<li><strong>New tab:</strong> Ctrl + Shift + T</li>
+<li><strong>Split pane vertically:</strong> Alt + Shift + +</li>
+<li><strong>Split pane horizontally:</strong> Alt + Shift + -</li>
+<li><strong>Move between panes:</strong> Alt + arrow keys</li>
+<li><strong>Search:</strong> Ctrl + Shift + F</li>
+<li><strong>Copy / Paste:</strong> Ctrl + Shift + C / Ctrl + Shift +
+V</li>
+</ul>
+<hr />
+<h2 id="5-installing-a-code-editor">5. Installing a Code Editor</h2>
+<p>While Claude Code works in the terminal, you’ll want an editor to
+view and occasionally tweak files.</p>
+<h3 id="recommendation-visual-studio-code-vs-code">Recommendation:
+Visual Studio Code (VS Code)</h3>
+<p>It’s free, visual, beginner-friendly, has great Git integration, and
+— most importantly — has a first-class <strong>WSL extension</strong>
+that lets it edit Linux files seamlessly.</p>
+<h3 id="install-vs-code-on-windows-not-in-wsl">Install VS Code (on
+Windows, not in WSL)</h3>
+<p>VS Code itself runs on Windows. Don’t install it inside Ubuntu — let
+the Windows version connect to WSL.</p>
+<p>Install via <code>winget</code> from PowerShell:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Microsoft<span class="op">.</span><span class="fu">VisualStudioCode</span> <span class="op">-</span>e</span></code></pre></div>
+<p>Or download from <a href="https://code.visualstudio.com">code.visualstudio.com</a> and run
+the installer. During install, check <strong>“Add to PATH”</strong> and
+<strong>“Register Code as an editor for supported file
+types”</strong>.</p>
+<h3 id="install-the-wsl-extension">Install the WSL extension</h3>
+<ol type="1">
+<li>Open VS Code.</li>
+<li>Click the <strong>Extensions</strong> icon (four squares) on the
+left.</li>
+<li>Search for <strong>“WSL”</strong> (publisher: Microsoft).</li>
+<li>Click <strong>Install</strong>.</li>
+</ol>
+<h3 id="essential-extensions-for-web-development">Essential extensions
+for web development</h3>
+<p>Also install:</p>
+<ol type="1">
+<li><strong>Prettier</strong> — Auto-formats your code.</li>
+<li><strong>Live Server</strong> — Preview websites instantly.</li>
+<li><strong>GitLens</strong> — See who changed what.</li>
+<li><strong>Auto Rename Tag</strong> — Rename HTML tags in pairs.</li>
+</ol>
+<h3 id="open-vs-code-from-your-ubuntu-terminal">Open VS Code from your
+Ubuntu terminal</h3>
+<p>In Ubuntu, navigate to any folder and run:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div>
+<p>The first time, VS Code will install a small server inside WSL
+automatically. After that, <code>code .</code> will pop open a VS Code
+window connected to your Linux environment — you’ll see “<strong>WSL:
+Ubuntu</strong>” in the bottom-left corner. That means you’re editing
+Linux files with full speed and no path translation.</p>
+<hr />
+<h2 id="6-installing-claude-code-prerequisites">6. Installing Claude
+Code Prerequisites</h2>
+<p>Claude Code requires Node.js version 18 or higher.</p>
+<h3 id="install-nodejs-using-nvm-node-version-manager">Install Node.js
+using nvm (Node Version Manager)</h3>
+<p><code>nvm</code> lets you easily switch Node versions. We install it
+inside Ubuntu using its official installer:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code></pre></div>
+<p>Close and reopen your terminal (or run <code>source ~/.bashrc</code>)
+so nvm loads. Then:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify nvm is working</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nvm</span> <span class="at">--version</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the latest LTS (Long Term Support) Node.js</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">nvm</span> install <span class="at">--lts</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make it the default</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="ex">nvm</span> use <span class="at">--lts</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="ex">nvm</span> alias default <span class="st">&#39;lts/*&#39;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify Node.js installation</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">--version</span>    <span class="co"># Should show v20.x.x or higher</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> <span class="at">--version</span>     <span class="co"># Should show 10.x.x or higher</span></span></code></pre></div>
+<blockquote>
+<p><strong>Heads-up on “nvm-windows”:</strong> There’s a separate tool
+called <code>nvm-windows</code> that runs in PowerShell. <strong>Don’t
+use it inside WSL.</strong> Inside WSL2/Ubuntu, you want the real Linux
+<code>nvm</code> shown above. Only use <code>nvm-windows</code> if
+you’re doing the native-Windows path in Section 15.</p>
+</blockquote>
+<hr />
+<h2 id="7-installing-claude-code">7. Installing Claude Code</h2>
+<h3 id="step-1-install-claude-code-globally-inside-ubuntu">Step 1:
+Install Claude Code globally (inside Ubuntu)</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div>
+<p>If you get a permission error, <strong>don’t</strong> prefix it with
+<code>sudo</code> — that’s a sign nvm wasn’t loaded. Close and reopen
+your terminal and try again.</p>
+<h3 id="step-2-authenticate">Step 2: Authenticate</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div>
+<p>The first time you run this, it will:</p>
+<ol type="1">
+<li>Print a URL (and try to open your default Windows browser — WSL2
+handles this automatically).</li>
+<li>Ask you to log in to your Anthropic account (create one at <a href="https://console.anthropic.com">console.anthropic.com</a> if
+needed).</li>
+<li>Authorize Claude Code.</li>
+</ol>
+<blockquote>
+<p>If the browser doesn’t open automatically, copy the URL from the
+terminal and paste it into your Windows browser manually. Then paste the
+auth code back into the terminal.</p>
+</blockquote>
+<h3 id="step-3-verify-it-works">Step 3: Verify it works</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span></code></pre></div>
+<h3 id="important-api-usage-costs">Important: API usage costs</h3>
+<p>Claude Code uses the Anthropic API, which has usage costs. As a
+student building prototypes:</p>
+<ul>
+<li>Start with the free tier if available.</li>
+<li>Monitor your usage at console.anthropic.com.</li>
+<li>Consider setting spending limits.</li>
+</ul>
+<hr />
+<h2 id="8-installing-docker">8. Installing Docker</h2>
+<p>Docker lets you run databases, servers, and other infrastructure in
+isolated “containers.” Claude Code can create and manage Docker
+containers for you.</p>
+<h3 id="install-docker-desktop-on-windows">Install Docker Desktop (on
+Windows)</h3>
+<p>On Windows, Docker installs on the Windows side and connects to WSL2
+for performance. <strong>Don’t try to install Docker directly inside
+Ubuntu</strong> — Docker Desktop’s WSL2 integration is the right
+path.</p>
+<p>Install via <code>winget</code> from PowerShell:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Docker<span class="op">.</span><span class="fu">DockerDesktop</span> <span class="op">-</span>e</span></code></pre></div>
+<p>Or download Docker Desktop from <a href="https://www.docker.com/products/docker-desktop">docker.com/products/docker-desktop</a>.</p>
+<p>After installation:</p>
+<ol type="1">
+<li>Launch <strong>Docker Desktop</strong>.</li>
+<li>Accept the license.</li>
+<li>Open Docker Desktop → <strong>Settings</strong> (gear icon) →
+<strong>General</strong>.
+<ul>
+<li>Check <strong>“Use the WSL 2 based engine.”</strong></li>
+</ul></li>
+<li>Settings → <strong>Resources → WSL Integration</strong>.
+<ul>
+<li>Toggle on <strong>“Enable integration with my default WSL
+distro”</strong>.</li>
+<li>Also toggle on the <strong>Ubuntu</strong> entry below.</li>
+</ul></li>
+<li>Click <strong>Apply &amp; Restart</strong>.</li>
+</ol>
+<h3 id="verify-docker-is-running-from-inside-ubuntu">Verify Docker is
+running from inside Ubuntu</h3>
+<p>In your Ubuntu terminal:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps    <span class="co"># Should show an empty list (no containers yet)</span></span></code></pre></div>
+<p>If <code>docker ps</code> errors with “permission denied” or “cannot
+connect to the Docker daemon,” go back to Docker Desktop’s <strong>WSL
+Integration</strong> settings and make sure Ubuntu is enabled, then
+close and reopen Ubuntu.</p>
+<h3 id="keep-docker-running">Keep Docker running</h3>
+<p>When working with Claude Code on projects that need databases:</p>
+<ul>
+<li><strong>Always start Docker Desktop first</strong> before running
+Claude Code.</li>
+<li>Claude Code will automatically create containers when needed.</li>
+<li>Docker Desktop must be running, or database commands will fail.</li>
+<li>You can have Docker Desktop start automatically with Windows
+(Settings → General → “Start Docker Desktop when you sign in to your
+computer”).</li>
+</ul>
+<h3 id="common-docker-commands">Common Docker commands</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See running containers</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># See all containers (including stopped)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop all running containers</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop <span class="va">$(</span><span class="ex">docker</span> ps <span class="at">-q</span><span class="va">)</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up unused resources (reclaim disk space)</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove all stopped containers and unused images (more aggressive)</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune <span class="at">-a</span></span></code></pre></div>
+<h3 id="example-claude-code-with-docker">Example: Claude Code with
+Docker</h3>
+<p>When you tell Claude Code something like “create a web app with a
+PostgreSQL database,” it will:</p>
+<ol type="1">
+<li>Create a <code>docker-compose.yml</code> file.</li>
+<li>Run <code>docker compose up</code> to start the database.</li>
+<li>Configure your app to connect to it.</li>
+</ol>
+<p>You just need Docker Desktop running — Claude Code handles the
+rest.</p>
+<hr />
+<h2 id="9-creating-your-first-project">9. Creating Your First
+Project</h2>
+<h3 id="create-a-projects-directory">Create a projects directory</h3>
+<p>In Ubuntu (Windows Terminal → Ubuntu tab):</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for all your projects in your Linux home</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/projects</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The tilde ~ means your home directory (/home/&lt;your-username&gt;).</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can always get there by typing: cd</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to it</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify the full path of the present working directory</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<p>You should see something like <code>/home/dave/projects</code>.
+<strong>Keep your code here, not under <code>/mnt/c/...</code>.</strong>
+WSL2 is dramatically faster on its native filesystem.</p>
+<h3 id="create-a-new-project">Create a new project</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project folder</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-first-website</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory into it</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-first-website</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Git</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic README</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# My First Website&quot;</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Make your first commit</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Initial commit&quot;</span></span></code></pre></div>
+<h3 id="connect-to-github">Connect to GitHub</h3>
+<ol type="1">
+<li>Go to GitHub and click <strong>“New repository”</strong>.</li>
+<li>Name it <code>my-first-website</code>.</li>
+<li>Keep it <strong>Private</strong> (good practice for client
+work).</li>
+<li><strong>Don’t</strong> initialize with a README (you already have
+one).</li>
+<li>Click <strong>Create repository</strong>.</li>
+</ol>
+<p>GitHub will show you commands. Run the “push an existing repository”
+ones:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:YOUR-USERNAME/my-first-website.git</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
+<h3 id="start-claude-code-in-your-project">Start Claude Code in your
+project</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you&#39;re in the project directory</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/my-first-website</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Claude Code</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div>
+<hr />
+<h2 id="10-using-claude-code-effectively">10. Using Claude Code
+Effectively</h2>
+<h3 id="basic-interaction">Basic interaction</h3>
+<p>Once Claude Code is running, you type natural language requests:</p>
+<pre><code>&gt; Create a simple landing page for a coffee shop called &quot;Boiler Brew&quot;</code></pre>
+<p>Claude Code will:</p>
+<ol type="1">
+<li>Understand your request.</li>
+<li>Create the necessary files.</li>
+<li>Show you what it’s doing.</li>
+<li>Ask questions if needed.</li>
+</ol>
+<h3 id="essential-commands">Essential commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/help</code></td>
+<td>Show available commands</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>Clear conversation history</td>
+</tr>
+<tr>
+<td><code>/cost</code></td>
+<td>Show API usage costs</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>Cancel current operation</td>
+</tr>
+<tr>
+<td><code>Ctrl+D</code> or <code>/exit</code></td>
+<td>Exit Claude Code</td>
+</tr>
+<tr>
+<td><code>Shift+Enter</code></td>
+<td>Next line of prompt entry</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>Accept prompt and begin processing</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Windows Terminal note:</strong> Default copy/paste is
+<strong>Ctrl+Shift+C</strong> / <strong>Ctrl+Shift+V</strong> (not
+Ctrl+C / Ctrl+V — <code>Ctrl+C</code> cancels the running command, just
+like on Mac/Linux).</p>
+</blockquote>
+<h3 id="tips-for-good-prompts">Tips for good prompts</h3>
+<p><strong>Be specific about what you want:</strong></p>
+<pre><code>Bad:  &quot;Make a website&quot;
+
+Good: &quot;Create a single-page portfolio website for a photographer with a header,
+       gallery section showing 6 images in a grid, an about section, and a
+       contact form. Use modern CSS with a dark theme.&quot;</code></pre>
+<p><strong>Mention technologies if you have preferences:</strong></p>
+<pre><code>&quot;Create a landing page using HTML, Tailwind CSS, and vanilla JavaScript.
+No frameworks needed.&quot;</code></pre>
+<p><strong>Describe the visual style:</strong></p>
+<pre><code>&quot;Use a minimalist design with lots of white space, a sans-serif font like
+Inter, and a blue (#0066CC) accent color.&quot;</code></pre>
+<hr />
+<h2 id="11-planning-mode-and-one-shot-builds">11. Planning Mode and
+One-Shot Builds</h2>
+<h3 id="the-power-of-planning">The Power of Planning</h3>
+<p>Good planning leads to cleaner builds. Claude Code has a
+<strong>Planning Mode</strong> that helps you think through the project
+before writing code.</p>
+<p>It takes time up front to think through and design what you want to
+have Claude build for you.</p>
+<p>This up-front time investment pays dividends, however. Every 10
+minutes invested in forethought and planning prior to the build will
+save hours of rework, testing, and tedious debugging later.</p>
+<h3 id="using-planning-mode">Using Planning Mode</h3>
+<p>Start your session by asking Claude Code to plan:</p>
+<pre><code>&gt; I want to build a portfolio website for a freelance graphic designer.
+  Before we build anything, let&#39;s create a detailed plan. Please enter
+  planning mode and help me think through:
+  - What pages we need
+  - What components each page should have
+  - What the file structure should look like
+  - What technologies to use
+  Save the plan to CLAUDE.md when we&#39;re done.</code></pre>
+<p>Claude Code will:</p>
+<ol type="1">
+<li>Enter planning mode.</li>
+<li>Explore options with you.</li>
+<li>Ask clarifying questions.</li>
+<li>Create a comprehensive plan.</li>
+<li>Save it to <code>CLAUDE.md</code>.</li>
+</ol>
+<h3 id="the-claudemd-file">The CLAUDE.md file</h3>
+<p>This is your project’s “memory.” It contains:</p>
+<ul>
+<li>Project overview</li>
+<li>Technical decisions</li>
+<li>File structure</li>
+<li>Implementation plan</li>
+<li>Notes for future sessions</li>
+</ul>
+<p><strong>Always create this file at the start of a project.</strong>
+Claude Code reads it automatically when you start a session in that
+folder.</p>
+<h3 id="example-claudemd-structure">Example CLAUDE.md structure</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: Designer Portfolio</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>Portfolio website for Jane Doe, freelance graphic designer.</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tech Stack</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>HTML5</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tailwind CSS (via CDN)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vanilla JavaScript</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No backend needed (static site)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pages</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Home - Hero with name/tagline, featured work (3 items)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Portfolio - Grid gallery with category filters</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>About - Bio, skills, photo</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Contact - Form (using Formspree for handling)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## File Structure</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>/</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>├── index.html</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>├── portfolio.html</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>├── about.html</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>├── contact.html</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>├── css/</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>│   └── custom.css</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>├── js/</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>│   └── main.js</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>└── images/</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    └── (placeholder images for now)</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Design Notes</span></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Color palette: Navy (#1a365d), Gold (#d69e2e), White</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Font: Playfair Display for headings, Inter for body</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mobile-first responsive design</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Implementation Order</span></span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Set up file structure</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create shared header/footer</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Build home page</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Build portfolio page with filter</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Build about page</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Build contact page with form</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Add responsive adjustments</span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Test all pages</span></code></pre></div>
+<h3 id="one-shot-build-strategy">One-Shot Build Strategy</h3>
+<p>After planning, aim for a <strong>one-shot build</strong> — giving
+Claude Code enough context to build everything correctly the first
+time.</p>
+<pre><code>&gt; Now let&#39;s build this. Using the plan in CLAUDE.md, create the complete
+  portfolio website. Build all pages, make sure navigation works between
+  them, and include placeholder content. I want to be able to open
+  index.html in a browser and have a fully functional site.</code></pre>
+<p><strong>Why one-shot builds are better:</strong></p>
+<ul>
+<li>Less back-and-forth means lower API costs.</li>
+<li>Fewer iterations mean fewer bugs.</li>
+<li>Complete context leads to more consistent code.</li>
+<li>You learn to communicate requirements clearly.</li>
+</ul>
+<p><strong>Tips for successful one-shot builds:</strong></p>
+<ol type="1">
+<li>Spend 30% of your time on the plan.</li>
+<li>Be very specific about requirements.</li>
+<li>Include examples or references when possible.</li>
+<li>Describe edge cases upfront.</li>
+<li>Review the plan before building.</li>
+</ol>
+<p>In the early stages of building and iteration, it may be better,
+faster, and more efficient to go back and update your plan, delete all
+of the previous work, and do another one-shot build from scratch with
+your updated plan.</p>
+<p>Minor tweaks like changing colors, updating text, or even adding new
+pages can be done as modifications to the existing build; however, major
+revisions of existing pages and functionality may be better done as a
+new one-shot build. Remember to save your color, text, and page tweaks
+back to your plan, in case you decide to do another one-shot build
+later.</p>
+<h3 id="managing-multiple-builds-beginner-workflow">Managing Multiple
+Builds (Beginner Workflow)</h3>
+<p>When you’re learning Claude Code, don’t worry about Git right away.
+Use simple numbered directories for your early experiments:</p>
+<pre><code>~/projects/client-portfolio/
+├── CLAUDE.md              # Your master plan (keep at top level)
+├── builds/
+│   ├── v0.1/              # First attempt - learning the ropes
+│   ├── v0.2/              # Better prompts, improved design
+│   └── v0.3/              # Almost there...
+└── v1.0/                  # Ready for client! Initialize Git here.</code></pre>
+<p><strong>Why this works:</strong></p>
+<ol type="1">
+<li><strong>Focus on one skill at a time</strong> — Learn Claude Code
+first, Git later.</li>
+<li><strong>Easy comparison</strong> — Open two builds side-by-side in
+VS Code or File Explorer.</li>
+<li><strong>No fear of breaking things</strong> — Can’t mess up a Git
+repo if there isn’t one.</li>
+<li><strong>Keep your experiments</strong> — Failed attempts are
+learning opportunities, not clutter.</li>
+</ol>
+<p><strong>The workflow:</strong></p>
+<ol type="1">
+<li><p>Create your project folder and write your plan in
+<code>CLAUDE.md</code>.</p></li>
+<li><p>Set up and enter your first build directory:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the builds folder and v0.1</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/projects/client-portfolio/builds/v0.1</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change into the build directory</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/client-portfolio/builds/v0.1</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy your plan here so Claude can read it</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../../CLAUDE.md .</span></code></pre></div></li>
+<li><p>Start Claude Code and do your one-shot build:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you&#39;re in the build directory</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Should show: /home/yourname/projects/client-portfolio/builds/v0.1</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Claude Code</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div>
+<p><strong>Important:</strong> Claude Code creates files in your current
+directory. Always <code>cd</code> into the build folder before running
+<code>claude</code>.</p></li>
+<li><p>Review the result. Update your master plan
+(<code>../../CLAUDE.md</code>) with lessons learned.</p></li>
+<li><p>Create the next build and try again:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Go back to project folder</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/client-portfolio</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create next build directory</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> builds/v0.2</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> builds/v0.2</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy your updated plan</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../../CLAUDE.md .</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Run Claude Code again</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div></li>
+<li><p>Repeat until you have something worth showing a client.</p></li>
+<li><p>When you’re happy, promote your best build to v1.0:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Go back to project folder</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/client-portfolio</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy your best build to v1.0 (let&#39;s say v0.3 was the winner)</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: The cp command below creates the v1.0 directory automatically.</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t pre-create the v1.0 directory using mkdir, otherwise v0.3 will get created under</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the pre-existing v1.0 directory:</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> builds/v0.3 v1.0</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The CLAUDE.md should already be in there from when you built it</span></span></code></pre></div></li>
+<li><p><strong>Now</strong> initialize Git in <code>v1.0/</code> and
+push to GitHub.</p></li>
+</ol>
+<p><strong>When to initialize Git (the v1.0 moment):</strong></p>
+<ul>
+<li>The build is ready to show a client.</li>
+<li>You’re handing off to your tech partner for deployment.</li>
+<li>You want to start tracking incremental changes (not wholesale
+rebuilds).</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/client-portfolio/v1.0</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Initial v1.0 build - ready for deployment&quot;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Then connect to GitHub as shown in Section 9</span></span></code></pre></div>
+<p><strong>After v1.0:</strong> Now Git makes sense. Use it to track
+changes, fixes, and enhancements. Your Git history will be clean and
+meaningful — showing intentional changes rather than your learning
+journey.</p>
+<p><strong>Pro tip:</strong> Keep your <code>builds/</code> folder
+around even after v1.0. You might want to reference an old approach, or
+your client might say “I liked that thing from the second version
+better.”</p>
+<h3 id="cleaning-up-old-builds">Cleaning Up Old Builds</h3>
+<p>Once you’re confident you no longer need your experimental builds,
+you can delete them to free up disk space.</p>
+<p><strong>When it’s safe to clean up:</strong></p>
+<ul>
+<li>The client has approved the final version.</li>
+<li>The project has been deployed and is running smoothly.</li>
+<li>You’re certain you won’t need to reference old approaches.</li>
+</ul>
+<p><strong>Option 1: Use File Explorer (safest)</strong></p>
+<p>Open File Explorer and type
+<code>\\wsl$\Ubuntu\home\&lt;your-username&gt;\projects\client-portfolio</code>
+in the address bar. Drag the <code>builds</code> folder to the
+<strong>Recycle Bin</strong>. You can recover it if you change your mind
+(until you empty the bin).</p>
+<p><strong>Option 2: Delete from the terminal</strong></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the project folder</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/client-portfolio</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete all experimental builds at once</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> builds/</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Or delete specific versions selectively</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> builds/v0.1 builds/v0.2</span></code></pre></div>
+<p><strong>Warning:</strong> <code>rm -rf</code> is permanent — there’s
+no undo or Recycle Bin when deleting from inside WSL with
+<code>rm</code>. Double-check you’re deleting the right folder before
+pressing Enter. If you’re not 100% sure, use File Explorer instead.</p>
+<hr />
+<h2 id="12-recommended-free-tools">12. Recommended Free Tools</h2>
+<h3 id="markdown-editorviewer">Markdown Editor/Viewer</h3>
+<p>For editing CLAUDE.md and documentation:</p>
+<p><strong>MarkText</strong> (Free, cross-platform)</p>
+<p>Install via <code>winget</code> from PowerShell:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id marktext<span class="op">.</span><span class="fu">marktext</span> <span class="op">-</span>e</span></code></pre></div>
+<ul>
+<li>Live preview as you type.</li>
+<li>Simple and lightweight.</li>
+<li>Works with files inside WSL via the <code>\\wsl$\Ubuntu\...</code>
+path.</li>
+</ul>
+<p>Alternative: VS Code has built-in Markdown preview
+(<strong>Ctrl+Shift+V</strong>).</p>
+<h3 id="code-editor-beyond-vs-code">Code Editor (Beyond VS Code)</h3>
+<p>If you find VS Code overwhelming:</p>
+<p><strong>Notepad++</strong> (Free, Windows-only)</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Notepad<span class="op">++.</span><span class="fu">Notepad</span><span class="op">++</span> <span class="op">-</span>e</span></code></pre></div>
+<ul>
+<li>Lightweight and fast.</li>
+<li>Good for quick file edits.</li>
+</ul>
+<p><strong>Zed</strong> (Free, now available on Windows)</p>
+<ul>
+<li>Very fast and minimal.</li>
+<li>Built-in AI features.</li>
+<li>Download from <a href="https://zed.dev">zed.dev</a>.</li>
+</ul>
+<h3 id="designprototyping">Design/Prototyping</h3>
+<p><strong>Figma</strong> (Free tier available)</p>
+<ul>
+<li>Browser-based, no install needed.</li>
+<li>Great for planning website layouts visually.</li>
+<li>Your designer clients might send you Figma files.</li>
+</ul>
+<h3 id="browser-for-development">Browser for Development</h3>
+<p><strong>Chrome</strong> or <strong>Firefox Developer
+Edition</strong></p>
+<ul>
+<li>Built-in DevTools (right-click → <strong>Inspect</strong>).</li>
+<li>Essential for debugging CSS and JavaScript.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Chrome</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Google<span class="op">.</span><span class="fu">Chrome</span> <span class="op">-</span>e</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or Firefox Developer Edition</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Mozilla<span class="op">.</span><span class="fu">Firefox</span><span class="op">.</span><span class="fu">DeveloperEdition</span> <span class="op">-</span>e</span></code></pre></div>
+<hr />
+<h2 id="13-example-prompts-to-try">13. Example Prompts to Try</h2>
+<h3 id="starter-project-try-this-first">Starter project (try this
+first!)</h3>
+<pre><code>Create a simple personal landing page with:
+- A centered hero section with my name &quot;Your Name&quot; and tagline &quot;Engineering Student &amp; Web Developer&quot;
+- A brief about section
+- Links to GitHub, LinkedIn, and email
+- Use a clean, modern design with a dark theme
+- Make it responsive for mobile</code></pre>
+<h3 id="business-landing-page">Business landing page</h3>
+<pre><code>Create a landing page for a local tutoring business called &quot;Boilermaker Tutoring&quot;:
+- Hero section with headline, subheadline, and a &quot;Book a Session&quot; button
+- Section listing 4 subjects offered (Math, Physics, Chemistry, CS)
+- Testimonials section with 3 fake student reviews
+- Contact section with address, phone, and email
+- Use your university&#39;s colors (Old Gold and Black) as the color scheme
+- Include smooth scroll navigation</code></pre>
+<h3 id="portfolio-website">Portfolio website</h3>
+<pre><code>Build a 3-page portfolio website for a graphic designer:
+- Home page with hero, featured work preview (3 items), and call to action
+- Portfolio page with a grid of 9 project thumbnails with hover effects
+- Contact page with a styled form
+
+Use placeholder images from picsum.photos. Make the design minimal
+and typography-focused.</code></pre>
+<h3 id="interactive-component">Interactive component</h3>
+<pre><code>Create an interactive pricing calculator for web design services:
+- Checkboxes for features (Landing Page $500, Additional Pages $200 each,
+  Contact Form $150, Gallery $300, E-commerce $1000)
+- Slider for number of additional pages (0-10)
+- Live total that updates as options change
+- &quot;Get Quote&quot; button that shows a summary
+Make it look professional with good spacing and animations.</code></pre>
+<h3 id="with-docker-database-project">With Docker (database
+project)</h3>
+<pre><code>Create a simple bookmark manager web app with:
+- Form to add a bookmark (URL, title, tags)
+- List view of all bookmarks with search/filter
+- Ability to delete bookmarks
+- Use Node.js with Express for the backend
+- PostgreSQL database for storage (use Docker)
+- Simple frontend with vanilla HTML/CSS/JS
+
+Make sure to include the docker-compose.yml file and instructions
+to run everything.</code></pre>
+<hr />
+<h2 id="14-working-with-your-tech-partner">14. Working with Your Tech
+Partner</h2>
+<h3 id="sharing-access-via-github">Sharing access via GitHub</h3>
+<p>Add your tech partner as a collaborator:</p>
+<ol type="1">
+<li>Go to your repository on GitHub.</li>
+<li><strong>Settings → Collaborators</strong>.</li>
+<li>Add their GitHub username or email.</li>
+</ol>
+<h3 id="branch-workflow">Branch workflow</h3>
+<p>Keep your main branch stable:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new branch for each feature</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/new-landing-page</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Do your work with Claude Code...</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit your changes</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add new landing page design&quot;</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Push the branch</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin feature/new-landing-page</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Pull Request on GitHub for your partner to review</span></span></code></pre></div>
+<h3 id="communication-through-code">Communication through code</h3>
+<p>Add notes in CLAUDE.md for your partner:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deployment Notes</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Site is static HTML/CSS/JS</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Can be deployed to Netlify, Vercel, or any static host</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No backend required</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Contact form uses Formspree (account: xyz@email.com)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## For Tech Partner</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Database credentials are in .env (not committed)</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Docker setup: run <span class="in">`docker compose up`</span> before starting</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>See /docs folder for API documentation</span></code></pre></div>
+<h3 id="gitignore-essentials">.gitignore essentials</h3>
+<p>Create a <code>.gitignore</code> file to avoid committing unnecessary
+files:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask Claude Code to create it</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Create <span class="ex">a</span> .gitignore file appropriate for a Node.js web project</span></code></pre></div>
+<p>Or create it manually:</p>
+<pre><code>node_modules/
+.env
+.DS_Store
+*.log
+dist/
+.cache/
+Thumbs.db
+desktop.ini</code></pre>
+<blockquote>
+<p>The last two (<code>Thumbs.db</code>, <code>desktop.ini</code>) are
+Windows-specific hidden files that should never be committed.</p>
+</blockquote>
+<hr />
+<h2 id="15-appendix-native-windows-setup-no-wsl2">15. Appendix: Native
+Windows Setup (No WSL2)</h2>
+<p>If you cannot use WSL2 — for example, your organization disables
+virtualization, or you specifically want to learn the Windows-native
+toolchain — here is the equivalent setup. <strong>Everything in Sections
+9–14 still applies</strong>, just substitute the install steps and paths
+below.</p>
+<h3 id="a1-package-manager-winget">A1. Package manager:
+<code>winget</code></h3>
+<p>Modern Windows (10 1809+ and all of Windows 11) ships with
+<strong>winget</strong>, Microsoft’s package manager. It’s the rough
+equivalent of Homebrew on Mac. Open PowerShell (no admin needed for most
+installs):</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Git<span class="op">.</span><span class="fu">Git</span> <span class="op">-</span>e</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id GitHub<span class="op">.</span><span class="fu">cli</span> <span class="op">-</span>e</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Microsoft<span class="op">.</span><span class="fu">WindowsTerminal</span> <span class="op">-</span>e</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Microsoft<span class="op">.</span><span class="fu">VisualStudioCode</span> <span class="op">-</span>e</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Docker<span class="op">.</span><span class="fu">DockerDesktop</span> <span class="op">-</span>e</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id CoreyButler<span class="op">.</span><span class="fu">NVMforWindows</span> <span class="op">-</span>e</span></code></pre></div>
+<h3 id="a2-use-git-bash-or-powershell-as-your-shell">A2. Use Git Bash
+(or PowerShell) as your shell</h3>
+<p>Git for Windows installs <strong>Git Bash</strong>, a bash-like
+shell. It understands most of the Mac/Linux commands in this guide
+(<code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>cp</code>,
+<code>rm</code>, <code>ssh-keygen</code>). Configure Windows Terminal so
+Git Bash is your default profile, the same way you’d set Ubuntu in the
+WSL path (Section 4).</p>
+<p>Things that differ from the Mac/WSL guide:</p>
+<ul>
+<li><strong>Home directory</strong> is <code>C:\Users\&lt;You&gt;</code>
+(Git Bash shows it as <code>/c/Users/&lt;You&gt;</code> and
+<code>~</code> still works).</li>
+<li><strong>Copy SSH key to clipboard:</strong> in Git Bash, run
+<code>cat ~/.ssh/id_ed25519.pub | clip</code> (Windows has its own
+<code>clip</code> on PATH).</li>
+<li><strong>Path separators:</strong> prefer forward slashes; Git Bash
+translates them.</li>
+</ul>
+<h3 id="a3-nodejs-via-nvm-windows">A3. Node.js via
+<code>nvm-windows</code></h3>
+<p>After installing <code>CoreyButler.NVMforWindows</code>,
+<strong>close and reopen PowerShell</strong> (so the installer’s PATH
+changes take effect). Then:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>nvm install lts</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>nvm use lts</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>node <span class="op">--</span>version</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>npm <span class="op">--</span>version</span></code></pre></div>
+<blockquote>
+<p><code>nvm-windows</code> is a different program from the Linux
+<code>nvm</code>. Its commands look similar but it has fewer features.
+That’s fine — you only need it to install one LTS version of Node.</p>
+</blockquote>
+<h3 id="a4-install-claude-code">A4. Install Claude Code</h3>
+<p>Same <code>npm</code> command as before — in
+<strong>PowerShell</strong> or <strong>Git Bash</strong>:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>npm install <span class="op">-</span>g @anthropic-ai<span class="op">/</span>claude-code</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>claude <span class="op">--</span>version</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>claude    <span class="co"># first run will open the browser to authenticate</span></span></code></pre></div>
+<h3 id="a5-docker-desktop-without-wsl2">A5. Docker Desktop without
+WSL2</h3>
+<p>Docker Desktop on Windows without WSL2 falls back to the
+<strong>Hyper-V</strong> backend. It works, but it’s slower and uses
+more RAM. Open Docker Desktop’s settings and untick the WSL2 options.
+From PowerShell or Git Bash, <code>docker ps</code> should work once
+Docker Desktop is running.</p>
+<h3 id="a6-project-paths-in-native-windows">A6. Project paths in native
+Windows</h3>
+<p>Use a folder under your Windows home for projects:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In PowerShell</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="va">$HOME</span>\projects</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> <span class="va">$HOME</span>\projects</span></code></pre></div>
+<p>Or in Git Bash:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/projects</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects</span></code></pre></div>
+<p><code>~</code> in Git Bash is <code>C:\Users\&lt;You&gt;</code>, so
+everything else in this guide still works.</p>
+<h3 id="a7-when-to-switch-back-to-wsl2">A7. When to switch back to
+WSL2</h3>
+<p>You’ll probably want to revisit WSL2 when:</p>
+<ul>
+<li>You start using Linux-only tools (some CLIs only ship
+<code>.deb</code> packages).</li>
+<li>You’re collaborating with someone on a Mac and want path/permission
+parity.</li>
+<li><code>node_modules</code> installs feel slow.</li>
+<li>You’re tired of fighting line-ending issues (<code>CRLF</code> vs
+<code>LF</code>) in Git.</li>
+</ul>
+<p>WSL2 can be installed at any time later without redoing your projects
+— you can copy them from <code>C:\Users\&lt;You&gt;\projects</code> into
+<code>\\wsl$\Ubuntu\home\&lt;you&gt;\projects</code> once Ubuntu is set
+up.</p>
+<hr />
+<h2 id="quick-start-checklist">Quick Start Checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Install WSL2
+(<code>wsl --install</code> in admin PowerShell, then
+reboot)</label></li>
+<li><label><input type="checkbox"></input>Set up Ubuntu username and
+password</label></li>
+<li><label><input type="checkbox"></input>Run
+<code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></label></li>
+<li><label><input type="checkbox"></input>Install Git in Ubuntu
+(<code>sudo apt install git -y</code>)</label></li>
+<li><label><input type="checkbox"></input>Create GitHub account with student
+email</label></li>
+<li><label><input type="checkbox"></input>Set up Git config and SSH keys (copy
+with <code>clip.exe</code>)</label></li>
+<li><label><input type="checkbox"></input>Install Windows Terminal
+(<code>winget install Microsoft.WindowsTerminal</code>)</label></li>
+<li><label><input type="checkbox"></input>Make Ubuntu the default profile in
+Windows Terminal</label></li>
+<li><label><input type="checkbox"></input>Install VS Code on Windows
+(<code>winget install Microsoft.VisualStudioCode</code>)</label></li>
+<li><label><input type="checkbox"></input>Install the WSL extension in VS
+Code</label></li>
+<li><label><input type="checkbox"></input>Install nvm in Ubuntu (curl
+script)</label></li>
+<li><label><input type="checkbox"></input>Install Node.js
+(<code>nvm install --lts</code>)</label></li>
+<li><label><input type="checkbox"></input>Install Claude Code
+(<code>npm install -g @anthropic-ai/claude-code</code>)</label></li>
+<li><label><input type="checkbox"></input>Create Anthropic account for API
+access</label></li>
+<li><label><input type="checkbox"></input>Install Docker Desktop on Windows
+and enable WSL2 integration</label></li>
+<li><label><input type="checkbox"></input>Create your ~/projects directory
+inside Ubuntu</label></li>
+<li><label><input type="checkbox"></input>Create your first project
+folder</label></li>
+<li><label><input type="checkbox"></input>Initialize Git and connect to
+GitHub</label></li>
+<li><label><input type="checkbox"></input>Run Claude Code and try the starter
+prompt!</label></li>
+</ul>
+<hr />
+<h2 id="getting-help">Getting Help</h2>
+<ul>
+<li><strong>Claude Code issues:</strong> Type <code>/help</code> or ask
+Claude Code itself.</li>
+<li><strong>Git problems:</strong> Ask Claude Code “I’m having a git
+issue where…”</li>
+<li><strong>WSL2 issues:</strong> <code>wsl --status</code> in
+PowerShell, or check Microsoft’s WSL docs.</li>
+<li><strong>General questions:</strong> Claude Code can explain concepts
+too.</li>
+</ul>
+<p>Remember: Claude Code is your pair programmer. Describe what you want
+clearly, plan before you build, and don’t be afraid to ask it questions.
+Good luck with your web prototyping business!</p>
+<hr />
+<p><em>Windows companion to the Claude Code Getting Started Guide.</em>
+<em>Last updated: May 2026</em></p>
+</body>
+</html>
